@@ -13,6 +13,22 @@ def comprobar_importe(valor: str) -> bool:
     Returns:
         bool: True si el valor es un número válido (positivo, negativo o con punto decimal), False en caso contrario.
     """
+    valor = input
+    if valor == "fin":
+        return None
+    try:
+        num = float(valor)
+        return num
+    except ValueError:
+        mostrar_mensaje_error()
+        return int
+
+
+def encuentra_fin(comando: str): 
+    
+    for comando in ("compra", "venta", "saldo", "reset", "fin"):
+        if comando is "fin": 
+            break
 
 
 def comprobar_comando(comando: str) -> bool:
@@ -25,13 +41,16 @@ def comprobar_comando(comando: str) -> bool:
     Returns:
         bool: True si el comando está en la lista de comandos válidos, False en caso contrario.
     """
-
-
+    if comando(str) in ("compra", "venta", "saldo", "reset", "fin"): 
+        return True
+    else: 
+      mostrar_mensaje_error()
+        
 def mostrar_mensaje_error():
     """
     Muestra el mensaje de error por entrada inválida.
     """
-
+    print("*ERROR* Entrada inválida")
 
 def procesar_compra(saldo: float, importe: float) -> float:
     """
@@ -44,7 +63,7 @@ def procesar_compra(saldo: float, importe: float) -> float:
     Returns:
         float: El saldo actualizado después de realizar la compra.
     """
-
+    
 
 def procesar_venta(saldo: float, importe: float) -> float:
     """
@@ -83,6 +102,9 @@ def resetear_saldo(saldo: float, cont_compras: int, cont_ventas: int) -> tuple[f
         tuple[float, int, int]: El nuevo saldo (0), número de compras (0) y número de ventas (0) después del reinicio.
     """
 
+    print(f"Saldo anterior: {saldo, cont_compras, cont_ventas}")
+
+    return 0, 0, 0
 
 def recuperar_comando_e_importe(linea: str) -> tuple[str, str]:
     """
